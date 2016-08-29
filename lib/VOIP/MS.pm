@@ -81,8 +81,13 @@ sub getCDR {
     return $self->_soapCall('getCDR', %params )->{cdr};
 }
 
-1;
+sub getServersInfo {
+   my ( $self, %params ) = validated_hash( \@_,
+	server_pop => { isa => 'Num',  optional => 1 },
+   );
 
+   return $self->_soapCall('getServersInfo', %params)->{servers};
+}
 
 1;
 __END__
