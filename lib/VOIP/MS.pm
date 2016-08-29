@@ -89,6 +89,69 @@ sub getServersInfo {
    return $self->_soapCall('getServersInfo', %params)->{servers};
 }
 
+sub getCallAccounts {
+   my ( $self, %params ) = validated_hash( \@_,
+	client => { isa => 'Str',  optional => 1 },
+   );
+
+   return $self->_soapCall('getCallAccounts', %params)->{accounts};
+}
+
+sub getCallBilling {
+   my ( $self, %params ) = validated_hash( \@_,
+   );
+
+   return $self->_soapCall('getCallBilling', %params)->{call_billing};
+}
+
+sub getCallTypes {
+   my ( $self, %params ) = validated_hash( \@_,
+	client => { isa => 'Str',  optional => 1 },
+   );
+
+   return $self->_soapCall('getCallTypes', %params)->{call_types};
+}
+
+sub getRegistrationStatus {
+   my ( $self, %params ) = validated_hash( \@_,
+	account => { isa => 'Str',  optional => 0 },
+   );
+
+   return $self->_soapCall('getRegistrationStatus', %params);
+}
+
+sub getSMS {
+   my ( $self, %params ) = validated_hash( \@_,
+	sms      => { isa => 'Num',  optional => 1 },
+	from     => { isa => 'Str',  optional => 1 },
+	to       => { isa => 'Str',  optional => 1 },
+	type     => { isa => 'Bool', optional => 1 },
+	did      => { isa => 'Num',  optional => 1 },
+	contact  => { isa => 'Num',  optional => 1 },
+	limit    => { isa => 'Num',  optional => 1 },
+	timezone => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getSMS', %params);
+}
+
+sub getPackages {
+   my ( $self, %params ) = validated_hash( \@_,
+	package => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getPackages', %params);
+}
+
+sub getDIDsInfo {
+   my ( $self, %params ) = validated_hash( \@_,
+	client => { isa => 'Str',  optional => 1 },
+	did    => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getDIDsInfo', %params);
+}
+
 1;
 __END__
 # Below is stub documentation for your module. You'd better edit it!
