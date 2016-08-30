@@ -152,6 +152,107 @@ sub getDIDsInfo {
    return $self->_soapCall('getDIDsInfo', %params);
 }
 
+sub getDIDCountries {
+   my ( $self, %params ) = validated_hash( \@_,
+	country_id => { isa => 'Num',  optional => 1 },
+	type       => { isa => 'Str',  optional => 1 },
+   );
+
+   return $self->_soapCall('getDIDCountries', %params)->{countries};
+}
+
+sub getCarriers {
+   my ( $self, %params ) = validated_hash( \@_,
+	carrier    => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getCarriers', %params)->{carriers};
+}
+
+sub getDIDsCAN {
+   my ( $self, %params ) = validated_hash( \@_,
+	province   => { isa => 'Num',  optional => 0 },
+	ratecenter => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getDIDsCAN', %params)->{dids};
+}
+
+sub getDIDsUSA {
+   my ( $self, %params ) = validated_hash( \@_,
+	state      => { isa => 'Num',  optional => 0 },
+	ratecenter => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getDIDsUSA', %params)->{dids};
+}
+
+sub getDISAs {
+   my ( $self, %params ) = validated_hash( \@_,
+	disa       => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getDISAs', %params)->{disa};
+}
+
+sub getIVRs {
+   my ( $self, %params ) = validated_hash( \@_,
+	ivr => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getIVRs', %params)->{ivrs};
+}
+
+sub getForwardings {
+   my ( $self, %params ) = validated_hash( \@_,
+	forwarding       => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getForwardings', %params)->{forwardings};
+}
+
+sub getInternationalTypes {
+   my ( $self, %params ) = validated_hash( \@_,
+	type => { isa => 'Str',  optional => 1 },
+   );
+
+   return $self->_soapCall('getInternationalTypes', %params)->{types};
+}
+
+sub getDIDsInternationalGeographic {
+   my ( $self, %params ) = validated_hash( \@_,
+	country_id => { isa => 'Num',  optional => 0 },
+   );
+
+   return $self->_soapCall('getDIDsInternationalGeographic', %params)->{locations};
+}
+
+sub getDIDsInternationalNational {
+   my ( $self, %params ) = validated_hash( \@_,
+	country_id => { isa => 'Num',  optional => 0 },
+   );
+
+   return $self->_soapCall('getDIDsInternationalNational', %params)->{locations};
+}
+
+sub getDIDsInternationalTollFree {
+   my ( $self, %params ) = validated_hash( \@_,
+	country_id => { isa => 'Num',  optional => 0 },
+   );
+
+   return $self->_soapCall('getDIDsInternationalTollFree', %params)->{locations};
+}
+
+sub sendSMS {
+   my ( $self, %params ) = validated_hash( \@_,
+	did     => { isa => 'Num',  optional => 0 },
+	dst     => { isa => 'Num',  optional => 0 },
+	message => { isa => 'Str',  optional => 0 },
+   );
+
+   return $self->_soapCall('sendSMS', %params)->{sms};
+}
+
 1;
 __END__
 # Below is stub documentation for your module. You'd better edit it!
