@@ -62,6 +62,11 @@ sub getBalance {
     return $self->_soapCall('getBalance')->{balance}->{current_balance};
 }
 
+sub getLanguages {
+    my $self = shift;
+    return $self->_soapCall('getLanguages')->{languages};
+}
+
 sub getCDR {
     my ( $self, %params ) = validated_hash( \@_,
         date_from => { isa => 'Str',  optional => 0 },
@@ -87,6 +92,14 @@ sub getServersInfo {
    );
 
    return $self->_soapCall('getServersInfo', %params)->{servers};
+}
+
+sub getTransactionHistory {
+   my ( $self, %params ) = validated_hash( \@_,
+	date_from => { isa => 'Str',  optional => 0 },
+	date_to => { isa => 'Str',  optional => 0 },
+   );
+   return $self->_soapCall('getTransactionHistory', %params)->{transactions};
 }
 
 sub getCallAccounts {
