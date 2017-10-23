@@ -61,6 +61,10 @@ sub getBalance {
     my $self = shift;
     return $self->_soapCall('getBalance')->{balance}->{current_balance};
 }
+sub getAllowedCodecs {
+    my $self = shift;
+    return $self->_soapCall('getAllowedCodecs')->{allowed_codecs};
+}
 
 sub getLanguages {
     my $self = shift;
