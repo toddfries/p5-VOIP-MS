@@ -71,6 +71,16 @@ sub getLanguages {
     return $self->_soapCall('getLanguages')->{languages};
 }
 
+sub getLockInternational {
+    my $self = shift;
+    return $self->_soapCall('getLockInternational')->{lock_international};
+}
+
+sub getProtocols {
+    my $self = shift;
+    return $self->_soapCall('getProtocols')->{protocols};
+}
+
 sub getCDR {
     my ( $self, %params ) = validated_hash( \@_,
         date_from => { isa => 'Str',  optional => 0 },
@@ -135,6 +145,38 @@ sub getRegistrationStatus {
    );
 
    return $self->_soapCall('getRegistrationStatus', %params);
+}
+
+sub getRoutes {
+   my ( $self, %params ) = validated_hash( \@_,
+	route => { isa => 'Num',  optional => 1 },
+   );
+
+   return $self->_soapCall('getRoutes', %params)->{routes};
+}
+
+sub getSubAccounts {
+    my ( $self, %params ) = validated_hash( \@_,
+	account => { isa => 'Str', optional => 1 },
+    );
+
+    return $self->_soapCall('getSubAccounts', %params)->{accounts};
+}
+
+sub getClients {
+    my ( $self, %params ) = validated_hash( \@_,
+	client => { isa => 'Str', optional => 1 },
+    );
+
+    return $self->_soapCall('getClients', %params)->{clients};
+}
+
+sub getRateCentersUSA {
+    my ( $self, %params ) = validated_hash( \@_,
+	state => { isa => 'Str', optional => 0 },
+    );
+
+    return $self->_soapCall('getRateCentersUSA', %params)->{ratecenters};
 }
 
 sub getSMS {
