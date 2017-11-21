@@ -139,6 +139,12 @@ sub getCallTypes {
    return $self->_soapCall('getCallTypes', %params)->{call_types};
 }
 
+sub getCallbacks {
+   my $self = shift;
+   return $self->_soapCall('getCallbacks')->{callbacks};
+}
+   
+
 sub getRegistrationStatus {
    my ( $self, %params ) = validated_hash( \@_,
 	account => { isa => 'Str',  optional => 0 },
@@ -208,7 +214,7 @@ sub getDIDsInfo {
 	did    => { isa => 'Num',  optional => 1 },
    );
 
-   return $self->_soapCall('getDIDsInfo', %params);
+   return $self->_soapCall('getDIDsInfo', %params)->{dids};
 }
 
 sub getDIDCountries {
